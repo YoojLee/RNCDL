@@ -22,8 +22,8 @@ json_path_train = os.path.join(_root, "VOCtrainval_06-Nov-2007/VOCdevkit/VOC2007
 image_root_train = os.path.join(_root, "VOCtrainval_06-Nov-2007/VOCdevkit/VOC2007/JPEGImages")
 
 # TODO[yujin]: change path to voc path
-json_path_val = os.path.join(_root, "coco/annotations/coco_half_val.json")
-image_root_val = os.path.join(_root, "coco/val2017")
+json_path_val = os.path.join(_root, "VOCtrainval_06-Nov-2007/VOCdevkit/VOC2007/Json_annotations/voc_split1_val.json")
+image_root_val = os.path.join(_root, "VOCtest_06-Nov-2007/VOCdevkit/VOC2007/JPEGImages")
 
 voc_meta = _get_voc_instances_meta()
 
@@ -44,7 +44,7 @@ except:
     )
 
     DatasetCatalog.register(
-        name="coco_half_val",
+        name="voc_half_val",
         func=lambda: load_coco_json(
             json_file=json_path_val,
             image_root=image_root_val,
