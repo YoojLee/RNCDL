@@ -103,8 +103,8 @@ def do_train(args, cfg):
     predictor_optim = instantiate(add_gradient_clipping(cfg.optimizer, cfg.train.enable_gradient_clipping))
 
     # Set up data loaders/processors
-    supervised_train_loader = instantiate(cfg.supervised_dataloader.train)
-    proposals_loader = instantiate(cfg.proposals_dataloader)
+    supervised_train_loader = instantiate(cfg.supervised_dataloader.train) # coco half
+    proposals_loader = instantiate(cfg.proposals_dataloader) # lvis
     discovery_data_processor = instantiate(cfg.discovery_data_processor)
 
     # Define trainer
