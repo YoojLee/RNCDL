@@ -12,7 +12,7 @@ from fvcore.common.param_scheduler import CosineParamScheduler
 
 from discovery.data.discovery_data_processor import DiscoveryDataProcessor
 from discovery.evaluation.evaluator_discovery import ClassMappingEvaluator, DiscoveryEvaluator
-from discovery.evaluation.lvis_evaluation import LVISEvaluatorDiscovery
+from discovery.evaluation.coco_evaluation import COCOEvaluatorDiscovery
 
 from configs.data.register_coco_half import coco_meta
 from ..fully_supervised.pascal50pct import (
@@ -122,7 +122,7 @@ discovery_class_mapping_evaluator = L(ClassMappingEvaluator)(
 )
 
 discovery_evaluator = L(DiscoveryEvaluator)(
-    evaluator=L(LVISEvaluatorDiscovery)(
+    evaluator=L(COCOEvaluatorDiscovery)(
         dataset_name="coco_half_val",
         distributed=True,
         known_class_ids=[3, 12, 34, 35, 36, 41, 45, 58, 60, 76, 77, 80, 90, 94, 99, 118, 127, 133, 139, 154, 173, 183,
