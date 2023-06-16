@@ -217,9 +217,9 @@ def init_proposals_extraction_model(model_supervised, cfg):
             test_nms_thresh=cfg.model_proposals_extraction_param.test_nms_thresh,
             test_topk_per_image=cfg.model_proposals_extraction_param.test_topk_per_image,
         ),
-        mask_in_features=model_supervised.roi_heads.mask_in_features,
-        mask_pooler=model_supervised.roi_heads.mask_pooler,
-        mask_head=model_supervised.roi_heads.mask_head,
+        # mask_in_features=model_supervised.roi_heads.mask_in_features,
+        # mask_pooler=model_supervised.roi_heads.mask_pooler,
+        # mask_head=model_supervised.roi_heads.mask_head,
     )
 
     model_proposals_extraction = GeneralizedRCNN(

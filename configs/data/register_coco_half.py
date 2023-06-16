@@ -17,11 +17,11 @@ from detectron2.data.datasets.builtin_meta import COCO_CATEGORIES, _get_coco_ins
 _root = os.getenv("DETECTRON2_DATASETS", "/home/data/Dataset/")
 
 # COCO 2017 train dataset with only 50% of images kept
-json_path_train = os.path.join(_root, "coco/annotations/coco_half_train.json")
-image_root_train = os.path.join(_root, "coco/train2017")
+json_path_train = os.path.join(_root, "coco2017/annotations/coco_half_train.json")
+image_root_train = os.path.join(_root, "coco2017/train2017")
 
-json_path_val = os.path.join(_root, "coco/annotations/coco_half_val.json")
-image_root_val = os.path.join(_root, "coco/val2017")
+json_path_val = os.path.join(_root, "coco2017/annotations/coco_half_val.json")
+image_root_val = os.path.join(_root, "coco2017/val2017")
 
 coco_meta = _get_coco_instances_meta()
 

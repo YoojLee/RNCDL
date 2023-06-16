@@ -14,7 +14,8 @@ from discovery.data.discovery_data_processor import DiscoveryDataProcessor
 from discovery.evaluation.evaluator_discovery import ClassMappingEvaluator, DiscoveryEvaluator
 from discovery.evaluation.lvis_evaluation import LVISEvaluatorDiscovery
 
-from ..fully_supervised.coco50pct import (
+from configs.data.register_coco_half import coco_meta
+from ..fully_supervised.pascal50pct import (
     optimizer,
     dataloader as supervised_dataloader,
     train,
@@ -68,7 +69,7 @@ lr_multiplier = L(WarmupParamScheduler)(
 
 # Define proposals extractor dataloader (on LVIS images)
 proposals_dataloader = L(build_detection_train_loader)(
-    dataset=L(get_detection_dataset_dicts)(names="lvis_v1_train", filter_empty=False),
+    dataset=L(get_detection_dataset_dicts)(names="coco_half_train", filter_empty=False),
     mapper=L(DatasetMapper)(
         is_train=False,
         augmentations=[
@@ -91,7 +92,7 @@ discovery_data_processor = L(DiscoveryDataProcessor)(
 # Discovery evaluation
 # Note: `build_detection_test_loader` source code has to be modified in-place to allow for `batch_size` argument
 discovery_test_loader = L(build_detection_test_loader)(
-    dataset=L(get_detection_dataset_dicts)(names="lvis_v1_val", filter_empty=False),
+    dataset=L(get_detection_dataset_dicts)(names="coco_half_val", filter_empty=False),
     mapper=L(DatasetMapper)(
         is_train=True,  # We must keep annotations to generate class mapping (predicted_id -> GT_id)
         augmentations=[
@@ -122,7 +123,7 @@ discovery_class_mapping_evaluator = L(ClassMappingEvaluator)(
 
 discovery_evaluator = L(DiscoveryEvaluator)(
     evaluator=L(LVISEvaluatorDiscovery)(
-        dataset_name="lvis_v1_val",
+        dataset_name="coco_half_val",
         distributed=True,
         known_class_ids=[3, 12, 34, 35, 36, 41, 45, 58, 60, 76, 77, 80, 90, 94, 99, 118, 127, 133, 139, 154, 173, 183,
                          207, 217, 225, 230, 232, 271, 296, 344, 367, 378, 387, 421, 422, 445, 469, 474, 496, 534, 569,

@@ -127,7 +127,7 @@ class AMPDiscoveryTrainer(AMPTrainer):
             instances = output["instances"].to("cpu")
             instances_coco = instances_to_coco_json(instances, image["image_id"])
             prop_bboxes = [inst["bbox"] for inst in instances_coco]
-            prop_segm = [inst["segmentation"] for inst in instances_coco]
+            # prop_segm = [inst["segmentation"] for inst in instances_coco]
 
             predictions = {
                 "image_id": image["image_id"],
@@ -136,7 +136,7 @@ class AMPDiscoveryTrainer(AMPTrainer):
                 "height": image["height"],
                 "proposal_boxes": prop_bboxes,
                 "proposal_bbox_mode": BoxMode.XYWH_ABS,
-                "proposal_segm": prop_segm,
+                # "proposal_segm": prop_segm,
             }
 
             proposals_per_image.append(predictions)
